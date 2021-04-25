@@ -35,10 +35,10 @@
 
 </head>
 <body>
-
+  
   <!-- Wrap all page content here -->
   <div id="wrap">
-
+    
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -48,13 +48,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Project name</a>
+          <a class="navbar-brand" href="/">Machine Learning-based Stock Trading</a>
         </div>
+
+        
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">About</a></li>
-            <li class="dropdown">
+            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Overall Summary</a></li>
+            <li {% if request.endpoint == 'rnn' %} class="active" {% endif %}><a href="{{ url_for('rnn') }}">Recurrent Neural Network (RNN)</a></li>
+            <li {% if request.endpoint == 'gbr' %} class="active" {% endif %}><a href="{{ url_for('gbr') }}">Gradient Boosted Regression (GBR)</a></li>
+            <li {% if request.endpoint == 'arima' %} class="active" {% endif %}><a href="{{ url_for('arima') }}">Autoregressive Integrated Moving Average (ARIMA)</a></li>
+            <!-- <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a>Action</a></li>
@@ -65,15 +69,14 @@
                 <li><a>Separated link</a></li>
                 <li><a>One more separated link</a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
           <ul class="nav navbar-nav pull-right">
-            <li><a href="{{ url_for('register') }}">Signup</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    
 
     <!-- Begin page content -->
     <main id="content" role="main" class="container">
@@ -97,7 +100,7 @@
 
   <div id="footer">
     <div class="container">
-      <p>Your Company &copy; All Rights Reserved.</p>
+      <p>Connect with me: linkedinurl</p>
       {% block footer %}{% endblock %}
     </div>
   </div>

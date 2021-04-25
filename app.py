@@ -46,11 +46,19 @@ def home():
     return render_template('pages/placeholder.home.html')
 
 
-@app.route('/about')
-def about():
-    return render_template('pages/placeholder.about.html')
+@app.route('/arima')
+def arima():
+    return render_template('pages/placeholder.arima.html')
 
+@app.route('/gbr')
+def gbr():
+    return render_template('pages/placeholder.gbr.html')
 
+@app.route('/rnn')
+def rnn():
+    return render_template('pages/placeholder.rnn.html')
+
+'''
 @app.route('/login')
 def login():
     form = LoginForm(request.form)
@@ -67,6 +75,7 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
+'''
 
 # Error handlers.
 

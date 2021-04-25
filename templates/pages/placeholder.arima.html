@@ -1,0 +1,30 @@
+{% extends 'layouts/main.html' %}
+{% block title %}ARIMA{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Autoregressive Integrated Moving Average (ARIMA)</h1>
+</div>
+
+<p class="lead">ARIMA is a forecasting model that utilizes time series based data to model the autocorrelations in the data.
+   To improve the forecasting accuracy of an ARIMA model, the trend and seasonality in the time-series data is removed.</p>
+
+<h2>Data Prep and Model Tuning</h2>
+<p class="lead">The stock prices for DAL were rescaled using a log transformation in order to reduce the skewness in the distribution.
+  Additionally, a first difference of the transformed stock prices was taken to achieve a stationary time series. </p>
+  
+<!-- insert images -->
+  
+<p class ="lead">An autocorrelation and partial autocorrelation plot of the first differences was created to determine the
+  model's parameters for Autoregressive (p), Integrated (d), and Moving Average (q). </p>
+
+<!-- insert images -->
+
+
+<h2>Evaluation</h2>
+<p class="lead">The ARIMA model dramatically overpredicted the Daily Low each day which resulted in entering the market at far 
+  too high of price. The overall returns using ARIMA predictions resulted in a loss of over 300% during the 3 month trading window.</p>
+
+<!-- insert images -->
+  
+{% endblock %}
