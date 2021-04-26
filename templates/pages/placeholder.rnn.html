@@ -10,12 +10,16 @@
 
 <h2>Data Prep and Model Tuning</h2>
 <p class="lead"> In order to run the dataset through a RNN model, the data needed to be normalized and converted from a 2 dimensional format to a 3 dimensional format.
-  The 3 dimensional format required by the LSTM layer includes a timestep dimension which refers to the time window that the LSTM should use for making predictions. 
-  Since the prediction model uses a walk-forward validation approach, the batch-size for thep predicitons is set to 1.
+  The 3 dimensional format required by the LSTM layer includes a timestep dimension which refers to the
+   time window that the LSTM uses for making predictions. Since the prediction model uses walk-forward 
+   validation approach, the batch-size for the predicitons is set to 1.
 <!-- insert images -->
   
   The overall RNN architecture for the model is composed of 1 LSTM layer, 1 Dropout Layer, and 4 dense layers.
-   A dropout layer was added to the model to prevent overfitting by randomly ignoring selected neurons during training.</p>
+   A dropout layer was added to the model to prevent overfitting. This layer randomly ignores selected neurons
+   during training.</p>
+
+   <div style="text-align:center;"><img src="../../static/img/LSTM_architecture.png"></div>
 
 <!-- insert images -->
 
