@@ -9,8 +9,12 @@
 <div style="text-align:center;"><img src="../../static/img/Seattle-Boeing-HeroB.jpg"></div>
   <h2><i>Project Purpose:</i></h2>
   <hr />
-<p class="lead">This project seeks to apply Autoregressive Integrated Moving Average (ARIMA), Gradient Boosting Regression (GBR), and Recurrent Neural Network (RNN) models
-   to generate a trading strategy for Delta Airlines stock that can yield returns greater than a simple 'buy and hold' strategy for 1 quarter (3 months).
+<p class="lead">This project seeks to generate a trading strategy that can outperfrom a simple 'buy and hold' strategy over 3 months by applying
+   Autoregressive Integrated Moving Average (ARIMA), Gradient Boosting Regression (GBR), and Recurrent Neural Network (RNN) models to generate high
+    and low daily predictions. 
+   <p class = 'Learning-based'>I choose to predict Delta Airlines (DAL) stock due to the fact that the stock was recovering during the testing window
+      (Jan 4th, 2021 - March 31st, 2021), which would yield more interesting results than choosing a stock that was plummeting or relatively
+       flat during this period. </p>
    <p style="font-size:12px; text-align: center;"><b>Disclaimer: 
     This project is entirely intended for research purposes and applying 
     the algorithms and/or trading strategies outlined below is no 
@@ -20,7 +24,11 @@
   <hr />
   <p class="lead">A combination of stock technical indicator and basic stock metrics were used as features in the the GBR and RNN model. To prevent data leakage, the 
     previous day's metrics were shifted forward in order to be used as feature for current day's
-     prediction. For example, DAL's closing price on 1/1/2021 was used as a feature in the prediction for 1/2/2021.
+     prediction. For example, DAL's closing price on 1/1/2021 was used as a feature in the prediction for 1/2/2021.</p>
+
+     <p style="text-align:center;"> <img src="../../static/img/Data_processing.png" class = "center"></p>
+
+
     <p><h4>Technical Indicators:</h4></p> 
     <li>Moving Average Convergence Divergence (MACD)</li>
     <li>Rate of Change (ROC)</li>
@@ -31,7 +39,7 @@
     <li>High and Low</li> 
     <li>Volume</li>
 
-  <h2><i>Evaluation:</i></h2>
+  <h2><i>Evaluation</i></h2>
   <hr />
   <p class="lead">The root mean square error (RMSE) was used to tune the models, but the overall return using the trading strategy described
      below was used to determine the optimal model. Details on each model's final parameters and results can be seen by clicking on its respective tab </p>
@@ -48,14 +56,14 @@
      <p> <h4>GBR strategy does have key benefits over the "Buy and Hold Strategy":</h4>  
     <li>GBR Strategy entered the market 21 days out of 60 potential trading days, which yielded an impressive 12% return over the entire testing window </li>
     <li>Based on the days GBR Strategy entered the market, it generated on average over $0.60 more than simply buying at the daily open price.</li>
-    <p style="text-align:center;"> <div><img src="../../static/img/GBR Returns vs Actuals.png" class = "center"></div> </p>
     <li>The variance/risk with GBR Strategy was also 10% less than buying and selling at the open and close </li>
-    <p style="text-align:center;"> <div><img src="../../static/img/GBR Trading Bands.png" class = "center"></div> </p>
+
+    <p style="text-align:center;"> <img src="../../static/img/GBR Returns vs Actuals.png" class = "center"> </p>
+   
+    <p style="text-align:center;"> <img src="../../static/img/GBR Trading Bands.png" class = "center"> </p>
 
   
   </p>
-  
-  <!-- insert GBR Trading Bands -->
-  <!-- insert GBR Returns vs Actual Returns -->
+
   
 {% endblock %}

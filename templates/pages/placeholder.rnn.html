@@ -9,31 +9,35 @@
 <p class="lead">RNN is a class of neural networks that uses an internal state (memory) to process a time-based sequence of inputs. </p>
 
 <h2>Data Prep and Model Tuning</h2>
-<p class="lead"> In order to run the dataset through a RNN model, the data needed to be normalized and converted from a 2 dimensional format to a 3 dimensional format.
+<p class> In order to run the dataset through a RNN model, the data needed to be normalized and converted from a 2 dimensional format to a 3 dimensional format.
   The 3 dimensional format required by the LSTM layer includes a timestep dimension which refers to the
    time window that the LSTM uses for making predictions. Since the prediction model uses walk-forward 
    validation approach, the batch-size for the predicitons is set to 1.
 <!-- insert images -->
   
-  The overall RNN architecture for the model is composed of 1 LSTM layer, 1 Dropout Layer, and 4 dense layers.
-   A dropout layer was added to the model to prevent overfitting. This layer randomly ignores selected neurons
-   during training.</p>
+  After testing various RNN architectures, the architecture that generated the lowest RMSE was a simple architecture using 1 LSTM layer,
+   1 Dropout Layer, and 1 dense layer. A dropout layer was added to the model to prevent overfitting. This layer randomly ignores selected neurons
+   during training. Using more complicated architectures caused overfitting on the training data and underfitting on the test data.</p>
 
    <div style="text-align:center;"><img src="../../static/img/LSTM_architecture.png"></div>
 
 <!-- insert images -->
 
+  The number of epochs for the model was also tuned. As you can see in the box and whisker plot below, the optimal number of epochs
+   during testing was found to be 4 epochs based on the RMSE that was generated. This plot was done using batch size of 1, but similar results were found using different batch sizes.
+   <div style="text-align:center;"><img src="../../static/img/epoch_plot.png"></div>
+
+  The final parameter that was tuned was the timestep dimension, which controls how far back the RNN model will lookback when generating predictions. 
 
 <h2>Evaluation</h2>
-<p class="lead">The RNN model generated POSITIVE returns, but returned ~ XX% less than a simple ‘Buy and Hold’ strategy over the 60 day trading period.</p>
+<p class="lead">The trading strategy FAILED to generate POSITIVE returns using the RNN predictions. The best results 
+  resulted in ~10% loss over the 3 month trading window, while a Simple Buy and Hold strategy generated ~20% return 
+  (Buy on Day 0 and sell at the end of the 3 months).</p>
 
-
-<p class ="lead">Other Key Insights from the model:</p>
-<li>RNN Strategy entered the market 21 days out of 60, which yielded a 12% return over the entire testing window.</li>
-<li>Based on the days RNN entered the market, RNN generated on average over $X.XX more than simply buying at the daily open price.</li>
-<li>The variance/risk with RNN was also 10% less than buying and selling at the open and close: .51 (GBR) vs .57 (Open/Close) </li>
-
-<!-- insert images -->
+  
+<p class ="lead">Key Learnings from this model:</p>
+<li>The RNN model can easily overfit training data at the cost of underfitting the test data by simplying adding more dense layers to the RNN architecture.</li>
+<li>Tuning the epoch and the number of LSTM 'units' had the greatest impact on reducing RMSE.</li>
 
 {% endblock %}
 
