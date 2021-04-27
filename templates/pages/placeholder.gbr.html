@@ -13,23 +13,29 @@
 <p class="lead">Since GBR uses decision trees as the underlying prediction model, there is no need to normalize or transform the technical indicators
   or stock metrics in the dataset. Two seperate GBR models were generated to predict the Daily High and Low Stock price for DAL. The regulurization parameter (alpha)
   along with the number of estimators and learning rate where tuned for each GBR model.  </p>
-  <div><img src="../../Seattle-Boeing-HeroB.jpg"></div>
 
-<p class="lead">Final GBR Parameters</p>
-<li>Alpha for low model: 0.3 </li>
-<li>Alpha for high model: 0.6 </li>
-<li>Learning rate: 0.05 </li>
-<li>Estimators: 500 </li>
+  <p style="text-align:center;"> <img src="../../static/img/GBR_tuning.png" class = "center"> </p>
 
-<!-- insert images -->
+
+  <p class="lead">The tuned GBR Parameters are listed below. One important note is that rather than use a "MSE" as the loss funciton for this model,
+     a quantile loss function was applied that allowed for control of the potential prediction error. </p>
+  <p style="text-align:center">
+  <p style="text-align:center" class = "lead"><b>Final Model Hyperparameters</b></p>
+  <li style="text-align:center">Quantile Loss parameter (alpha) for low_model: .3 </li>
+  <li style="text-align:center">Quantile Loss parameter (alpha) for high_model: .7 </li>
+  <li style="text-align:center">Learning rate: 0.05 </li>
+  <li style="text-align:center">Estimators: 500 </li>
+  </p>
 
 <h2>Evaluation</h2>
 <p class="lead">The GBR model generated POSITIVE returns, but returned ~ 25% less than a simple ‘Buy and Hold’ strategy over the 60 day trading period.</p>
+<p style="text-align:center;"> <img src="../../static/img/GBR Returns vs Actuals.png" class = "center"> </p>
+
 <p class ="lead">Other Key Insights from the model:</p>
 <li>GBR Strategy entered the market 21 days out of 60, which yielded a 12% return over the entire testing window.</li>
 <li>Based on the days GBR entered the market, GBR generated on average over $0.60 more than simply buying at the daily open price.</li>
 <li>The variance/risk with GBR was also 10% less than buying and selling at the open and close: .51 (GBR) vs .57 (Open/Close) </li>
 
-<!-- insert images -->
+<p style="text-align:center;"> <img src="../../static/img/GBR Trading Bands.png" class = "center"> </p>
 
 {% endblock %}
