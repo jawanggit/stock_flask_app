@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="page-header">
+</br>
   <h1>Gradient Boosted Regression (GBR)</h1>
 </div>
 
@@ -10,14 +11,14 @@
   that minimizes/optimizes the loss function (RMSE). </p>
 
 <h2>Data Prep and Model Tuning</h2>
-<p class="lead">Since GBR uses decision trees as the underlying prediction model, there is no need to normalize or transform the technical indicators
+<p >Since GBR uses decision trees as the underlying prediction model, there is no need to normalize or transform the technical indicators
   or stock metrics in the dataset. Two seperate GBR models were generated to predict the Daily High and Low Stock price for DAL. The regulurization parameter (alpha)
   along with the number of estimators and learning rate where tuned for each GBR model.  </p>
 
   <p style="text-align:center;"> <img src="../../static/img/GBR_tuning.png" class = "center"> </p>
 
-
-  <p class="lead">The tuned GBR Parameters are listed below. One important note is that rather than use a "MSE" as the loss funciton for this model,
+</br>
+  <p >The tuned GBR Parameters are listed below. One important note is that rather than use a "MSE" as the loss funciton for this model,
      a quantile loss function was applied that allowed for control of the potential prediction error. </p>
   <p style="text-align:center">
   <p style="text-align:center" class = "lead"><b>Final Model Hyperparameters</b></p>

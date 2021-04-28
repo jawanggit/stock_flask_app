@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="page-header">
+</br>
   <h1>Autoregressive Integrated Moving Average (ARIMA)</h1>
 </div>
 
@@ -10,7 +11,7 @@
    To improve the forecasting accuracy of an ARIMA model, the trend and seasonality in the time-series data is removed.</p>
 
 <h2>Data Prep and Model Tuning</h2>
-<p class="lead">The stock prices for DAL were rescaled using a log transformation in order to reduce the skewness in the distribution.
+<p>The stock prices for DAL were rescaled using a log transformation in order to reduce the skewness in the distribution.
   Additionally, a first difference of the transformed stock prices was taken to achieve a stationary time series. An autocorrelation and partial autocorrelation
    plot of the first differences was created to determine the model's parameters for Autoregressive (p), Integrated (d), and Moving Average (q). </p>
 

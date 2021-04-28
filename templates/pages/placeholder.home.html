@@ -4,63 +4,70 @@
 
 
 <div class="page-header">
+</br>
   <h1><i>Overall Summary</i></h1>
 </div>
 <div style="text-align:center;"><img src="../../static/img/Seattle-Boeing-HeroB.jpg"></div>
   <h2><i>Project Purpose:</i></h2>
   <hr />
-<p class="lead">This project seeks to generate a trading strategy that can outperfrom a simple 'buy and hold' strategy over 3 months by applying
-   Autoregressive Integrated Moving Average (ARIMA), Gradient Boosting Regression (GBR), and Recurrent Neural Network (RNN) models to generate high
-    and low daily predictions. 
-   <p class = 'Learning-based'>I choose to predict Delta Airlines (DAL) stock due to the fact that the stock was recovering during the testing window
-      (Jan 4th, 2021 - March 31st, 2021), which would yield more interesting results than choosing a stock that was plummeting or relatively
+<p class="lead">This project seeks to generate investment returns that can outperfrom a simple 'buy and hold' trading strategy over a 3 month period by applying
+   Autoregressive Integrated Moving Average (ARIMA), Gradient Boosting Regression (GBR), and Recurrent Neural Network (RNN) models to generate daily high
+    and low stock price predictions. 
+    <p class = "lead">Delta Airlines (DAL) stock was choosen for the model due to the fact that the airline stock was recovering during the testing window
+      (Jan 4th, 2021 - March 31st, 2021) and thus, yield more interesting results than choosing a stock that was plummeting or relatively
        flat during this period. </p>
    <p style="font-size:12px; text-align: center;"><b>Disclaimer: 
     This project is entirely intended for research purposes and applying 
     the algorithms and/or trading strategies outlined below is no 
     guarantee of positive returns</b> </p>
 </p>
+</br>
   <h2><i>Key Features in the Data:</i></h2>
   <hr />
-  <p class="lead">A combination of stock technical indicator and basic stock metrics were used as features in the the GBR and RNN model. To prevent data leakage, the 
-    previous day's metrics were shifted forward in order to be used as feature for current day's
-     prediction. For example, DAL's closing price on 1/1/2021 was used as a feature in the prediction for 1/2/2021.</p>
+  <p class="lead">A combination of stock technical indicators and basic stock metrics were used as features in the the GBR and RNN model. To prevent data leakage, the 
+    previous day's metrics were shifted forward in order to be used as a feature for current day's
+     prediction. For example, DAL's closing price on 1/1/2021 was used as a feature in the prediction for the next day, 1/2/2021.</p>
 
-     <p style="text-align:center;"> <img src="../../static/img/Data_processing.png" class = "center"></p>
+     <p style="text-align:center;"> <img src="../../static/img/Data_processing_1.png" class = "center"></p>
 
 
     <p><h4>Technical Indicators:</h4></p> 
-    <li>Moving Average Convergence Divergence (MACD)</li>
-    <li>Rate of Change (ROC)</li>
-    <li>Price Oscillator (PPO)</li> 
+    <a href= https://www.investopedia.com/terms/r/rsi.asp><li>Relative Strength Index (RSI)</li></a>
+    <a href= https://www.investopedia.com/terms/m/macd.asp#:~:text=Moving%20average%20convergence%20divergence%20(MACD)%20is%20a%20trend%2Dfollowing,from%20the%2012%2Dperiod%20EMA.><li>Moving Average Convergence Divergence (MACD)</li></a>
+    <a href = https://www.investopedia.com/terms/p/pricerateofchange.asp><li>Rate of Change (ROC)</li></a>
+    <a href = https://www.investopedia.com/articles/investing/051214/use-percentage-price-oscillator-elegant-indicator-picking-stocks.asp><li>Price Oscillator (PPO)</li> </a>
 
     <p><h4>Basic Stock metrics:</h4></p>
     <li>Open and Close</li> 
     <li>High and Low</li> 
     <li>Volume</li>
-
+  </br>
   <h2><i>Evaluation</i></h2>
   <hr />
-  <p class="lead">The root mean square error (RMSE) was used to tune the models, but the overall return using the trading strategy described
+  <p class="lead">The root mean square error (RMSE) was used to tune the initially hyperparameters in the models, but the overall return using the trading strategy described
      below was used to determine the optimal model. Details on each model's final parameters and results can be seen by clicking on its respective tab </p>
 
     <p><h4>Trading Strategy</h4></p> 
-    <ol>Buy each day at the Predicted Daily Low. If the Predicted Daily Low is never reached, do NOT buy at all. </ol>
-    <ol>Sell each day at the Predicted Daily High. If the Predicted Daily High is NOT reached, sell at the daily closing price.</ol>  
-    
+    <ol><b>Step 1:</b> Buy each day at the Predicted Daily Low. </ol>
+    <ol><ol>Step 1a: If the Predicted Daily Low is never reached, do NOT buy at all</ol></ol>
+    <ol><ol>Step 1b: If Predicted Daily Low is greater than the opening price for the day, buy at the opening/current price.</ol></ol>
+    <ol><b>Step 2:</b> Sell each day at the Predicted Daily High. If the Predicted Daily High is NOT reached, sell at the daily closing price.</ol>  
+  </br>
   <h2><i>Overall Findings</i></h2>
   <hr />
-  <p class="lead">The GBR model provided the greatest return over the ARIMA and RNN models when applied to the trading strategy. However, it was ~25% less than the return of a simple 'Buy and Hold'
-     strategy (Buy on Day 0 and sell at the end of the 3 months). 
+  <p class="lead">A trading strategy using the GBR model's predictions yielded the greatest return. However, it was ~25% less ($6.20 per share vs $8.11 per share)
+     than the return of a simple 'Buy and Hold' strategy (Buy on Day 0 and sell at the end of the 3 months). 
      
      <p> <h4>GBR strategy does have key benefits over the "Buy and Hold Strategy":</h4>  
     <li>GBR Strategy entered the market 21 days out of 60 potential trading days, which yielded an impressive 12% return over the entire testing window </li>
     <li>Based on the days GBR Strategy entered the market, it generated on average over $0.60 more than simply buying at the daily open price.</li>
-    <li>The variance/risk with GBR Strategy was also 10% less than buying and selling at the open and close </li>
+    <li>The variance/risk with GBR Strategy was also 10% less than buying and selling at the open and close </li></br>
 
     <p style="text-align:center;"> <img src="../../static/img/GBR Returns vs Actuals.png" class = "center"> </p>
+     </br>
    
     <p style="text-align:center;"> <img src="../../static/img/GBR Trading Bands.png" class = "center"> </p>
+     </br>
 
   
   </p>

@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="page-header">
+</br>
   <h1>Recurrent Neural Network (RNN)</h1>
 </div>
 
@@ -10,9 +11,9 @@
 
 <h2>Data Prep and Model Tuning</h2>
 <p class> In order to run the dataset through a RNN model, the data needed to be normalized and converted from a 2 dimensional format to a 3 dimensional format.
-  The 3 dimensional format required by the LSTM layer includes a timestep dimension which refers to the
-   time window that the LSTM uses for making predictions. Since the prediction model uses walk-forward 
-   validation approach, the batch-size for the predicitons is set to 1.
+  The 3 dimensional format required by the Long Short Term Memory (LSTM) layer includes a timestep dimension which refers to the
+   time window that the LSTM uses for making predictions. Since the prediction model uses a walk-forward 
+   validation approach, the batch-size for the predicitons in the layer are is set to 1.
 <!-- insert images -->
   
   After testing various RNN architectures, the architecture that generated the lowest RMSE was a simple architecture using 1 LSTM layer,
@@ -22,22 +23,46 @@
    <div style="text-align:center;"><img src="../../static/img/LSTM_architecture.png"></div>
 
 <!-- insert images -->
-
+</br>
   The number of epochs for the model was also tuned. As you can see in the box and whisker plot below, the optimal number of epochs
    during testing was found to be 4 epochs based on the RMSE that was generated. This plot was done using batch size of 1, but similar results were found using different batch sizes.
    <div style="text-align:center;"><img src="../../static/img/epoch_plot.png"></div>
+</br>
+  The final parameter that was tuned was the timestep dimension, which controls how far back the RNN model will lookback when generating predictions. With an epoch hyperparameter of 4,
+  I performed a grid search over various timesteps ranging from 1 to 16. Since the starting values for a neural network model differ each time it is run, I ran 10 experiments at each timestep
+   and took the mean value. I then applied the trading strategy logic to determine which combination of timesteps hyperparameters for the daily low price model and daily high price model 
+   generated the greatest return. The table below shows the dollar returns per share for various timesteps.
 
-  The final parameter that was tuned was the timestep dimension, which controls how far back the RNN model will lookback when generating predictions. 
+   <div style="text-align:center;"><img src="../../static/img/RNN_timesteps_table.png"></div>
+
+   
+   
+   The optimal hyperparameters that generated the greatest return were the following:
+
+   <p style="text-align:center" class = "lead"><b>Final Model Hyperparameters</b></p>
+
+   <div style="text-align:center;"><img src="../../static/img/RNN_parameters_1.png"></div>
 
 <h2>Evaluation</h2>
-<p class="lead">The trading strategy FAILED to generate POSITIVE returns using the RNN predictions. The best results 
-  resulted in ~10% loss over the 3 month trading window, while a Simple Buy and Hold strategy generated ~20% return 
-  (Buy on Day 0 and sell at the end of the 3 months).</p>
+<p class="lead">The trading strategy generated POSITIVE returns using the RNN predictions. However, these returns were ~50% less ($4.58 per share  vs $8.11 per share) than using
+   a simple 'Buy and Hold' strategy (Buy on Day 0 and sell at the end of the 3 months). </p>
+
+   <p class="lead">As you can see from the predictions vs actuals graphs, the RNN model overestimates the high and low prices in the beginning and
+      underestimates the high and low prices towards the end of the trading window. This results in the trading strategy generating return equal to
+      the open and close price each day in the beginning and slightly better returns towards the end.</p>
+   <div style="text-align:center;"><img src="../../static/img/RNN_pred_vs_act.png"><img src="../../static/img/RNN_returns.png"></div> </br>
 
   
-<p class ="lead">Key Learnings from this model:</p>
-<li>The RNN model can easily overfit training data at the cost of underfitting the test data by simplying adding more dense layers to the RNN architecture.</li>
-<li>Tuning the epoch and the number of LSTM 'units' had the greatest impact on reducing RMSE.</li>
+<p><b>Key Learnings from this model:</b></p>
+<li>The RNN model can easily overfit training data at the cost of underfitting the test data. This was the case for the RNN architectures I first explored
+  which had multiple dense layers.</li>
+<li>Tuning the epoch and the number of LSTM 'units' had the greatest impact on reducing RMSE.</li></br>
+<p><b>Next Steps:</b></p>
+  <li>Due to time constraints, I was unable to explore if using a different epoch hyperparameter that had a higher RMSE could generate a greater return
+   through the trading strategy. Given that the RMSE for the low and high models that generated the greatest return did NOT have the lowest RMSEs, I believe
+   there is potential to generate greater returns by exploring different combinations of less optimal RMSE models.</li> 
+  </br>
+
 
 {% endblock %}
 
